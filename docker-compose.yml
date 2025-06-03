@@ -2,12 +2,14 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
+    restart: always
+    privileged: true
     ports:
       - "9000:9000"     # Porta HTTP
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /:/host:ro
       - portainer_data:/data
-    restart: always
 
 volumes:
   portainer_data:
